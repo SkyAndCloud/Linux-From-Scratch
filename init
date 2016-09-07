@@ -1,0 +1,33 @@
+#!/bin/bash
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin
+export TERM=linux
+
+mknod -m 0666 /dev/null c 1 3
+mount -t proc proc /proc >/dev/null 2>&1
+mount -t sysfs sysfs /sys >/dev/nll 2>&1
+
+if [ ! -c /dev/ptmx ]; then
+    # try to mount devtmpfs
+    if ! mount -t devtmpfs -omode=0755 devtmpfs /dev >/dev/null 2>&1; then
+        # if it failed fall back to normal tmpfs
+	mount -t tmpfs -omode=0755 tmpfs /dev >/dev/null 2>&1 
+	# Make some basic devices first, let udev handle the rest
+	mknod -m 0666 /dev/null c 1 3
+	mknod -m 0666 /dev/ptmx c 5 2
+	mknod -m 0600 /dev/console c 5 1
+	mknod -m 0660 /dev/kmsg c 1 11
+    fi
+fi
+mkdir /dev/shm
+mkdir /dev/pts
+mount -t devpts -o gid=5,mode=620 devpts /dev/pts >/dev/null 2>&1
+mount -t tmpfs tmpfs /dev/shm >/dev/null 2>&1
+mknod -m 0600 /dev/btrfs-control c 10 234
+
+#udevd --daemon --resolve-names=never
+/sbin/udevd &
+udevadm trigger
+#start_udev
+#modprobe mptspi
+./ins_mod.sh
+exec ./bin/bash
