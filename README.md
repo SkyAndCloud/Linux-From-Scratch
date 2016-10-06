@@ -24,7 +24,7 @@ This is a mini-linux customized from Cent OS 6.8, which is a work like [LFS](htt
 2. 关掉所有的`Kernel hacking`可以减小约0.7M的内核体积，Security option也可以全部关掉
 3. 尽量将设备驱动编译成为模块，查看选项的HELP，其中会有提示建议选择y还是n, 当然也要依情况而定，如果自己真的是对应于那个选项的情况
    肯定还是要打开的，我之前就有一个`AHCI`相关的选项，内核建议关掉，可是我的设备就是应该打开才能跑
-4. udevd 的运行需要网络相关的支持，不要将关键性的非驱动网络选项编译为模块，否则udevd 将无法开启
+4. `udevd` 的运行需要网络相关的支持，不要将关键性的非驱动网络选项编译为模块，否则udevd 将无法开启
 5. 期间各个命令若不能运行请用`strace` 查看执行过程中是否缺失某些命令
 6. 如果需要`DHCP`的支持，必须将原来系统（此处指Cent OS6.8)的某些命令或配置(如`dhclient`)添加进小系统
    比如对于`udevd`的配置，建议在根目录下执行 `find . -name "*udevd*"`
