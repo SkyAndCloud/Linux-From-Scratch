@@ -20,22 +20,22 @@ This is a mini-linux customized from Cent OS 6.8, which is a work like [LFS](htt
 1. Can not type in sometimes.
 
 ## Tips
-1. 先使用`make defconfig`生成默认配置，再`make localmodconfig` 添加必须要添加的驱动，`make menuconfig`中删除不必要的网卡驱动可以大幅减小体积    
+1. 先使用`make defconfig`生成默认配置，再`make localmodconfig` 添加必须要添加的驱动，`make menuconfig`中删除不必要的网卡驱动可以大幅减小体积
 2. 关掉所有的`Kernel hacking`可以减小约0.7M的内核体积，Security option也可以全部关掉
-3. 尽量将设备驱动编译成为模块，查看选项的HELP，其中会有提示建议选择y还是n, 当然也要依情况而定，如果自己真的是对应于那个选项的情况    
+3. 尽量将设备驱动编译成为模块，查看选项的HELP，其中会有提示建议选择y还是n, 当然也要依情况而定，如果自己真的是对应于那个选项的情况
    肯定还是要打开的，我之前就有一个`AHCI`相关的选项，内核建议关掉，可是我的设备就是应该打开才能跑
 4. udevd 的运行需要网络相关的支持，不要将关键性的非驱动网络选项编译为模块，否则udevd 将无法开启
 5. 期间各个命令若不能运行请用`strace` 查看执行过程中是否缺失某些命令
-6. 如果需要`DHCP`的支持，必须将原来系统（此处指Cent OS6.8)的某些命令或配置(如`dhclient`)添加进小系统    
+6. 如果需要`DHCP`的支持，必须将原来系统（此处指Cent OS6.8)的某些命令或配置(如`dhclient`)添加进小系统
    比如对于`udevd`的配置，建议在根目录下执行 `find . -name "*udevd*"`
 7. 在小系统中拷贝命令依赖的库文件时，注意有些库仍依赖于其他的库，如果命令不能运行参见Tips 5
 8. `LVM，NTFS-3g, Grub install` 请尽量参考下面的链接
 9. **最重要**的一点!!! 请务必使用`git`做好版本控制
 
 ## Helpful Links
-[Linux from scratch](http://www.linuxfromscratch.org/blfs/view/svn/longindex.html#kernel-config-index)
-[Arch wiki](https://wiki.archlinux.org/)
-[Gentoo wiki](https://wiki.gentoo.org/wiki/LVM#Kernel)
-[Linux kernel config manual](http://forum.ubuntu.org.cn/viewtopic.php?f=56&t=149260)
-[Linux kernel config reference](http://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration/ch09s05.html)
+- [Linux from scratch](http://www.linuxfromscratch.org/blfs/view/svn/longindex.html#kernel-config-index)
+- [Arch wiki](https://wiki.archlinux.org/)
+- [Gentoo wiki](https://wiki.gentoo.org/wiki/LVM#Kernel)
+- [Linux kernel config manual](http://forum.ubuntu.org.cn/viewtopic.php?f=56&t=149260)
+- [Linux kernel config reference](http://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration/ch09s05.html)
 
