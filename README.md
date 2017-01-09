@@ -19,7 +19,7 @@ This is a mini-linux customized from Cent OS 6.8, which is a work like [LFS](htt
 ## Bugs
 1. Can not type in sometimes.
 
-## Tips
+## ps
 1. 先使用`make defconfig`生成默认配置，再`make localmodconfig` 添加必须要添加的驱动，`make menuconfig`中删除不必要的网卡驱动可以大幅减小体积
 2. 关掉所有的`Kernel hacking`可以减小约0.7M的内核体积，Security option也可以全部关掉
 3. 尽量将设备驱动编译成为模块，查看选项的HELP，其中会有提示建议选择y还是n, 当然也要依情况而定，如果自己真的是对应于那个选项的情况
@@ -31,6 +31,8 @@ This is a mini-linux customized from Cent OS 6.8, which is a work like [LFS](htt
 7. 在小系统中拷贝命令依赖的库文件时，注意有些库仍依赖于其他的库，如果命令不能运行参见Tips 5
 8. `LVM，NTFS-3g, Grub install` 请尽量参考下面的链接
 9. **最重要**的一点!!! 请务必使用`git`做好版本控制
+10. `gunzip < /boot/initrd.img | cpio -i --make-directories` extract initrd.img    
+    `find . | cpio -H newc -o | gzip > /boot/initrd.img` compress initrd.img
 
 ## Helpful Links
 - [Linux from scratch](http://www.linuxfromscratch.org/blfs/view/svn/longindex.html#kernel-config-index)
