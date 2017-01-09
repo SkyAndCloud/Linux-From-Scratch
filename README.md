@@ -33,6 +33,7 @@ This is a mini-linux customized from Cent OS 6.8, which is a work like [LFS](htt
 9. **最重要**的一点!!! 请务必使用`git`做好版本控制
 10. `gunzip < /boot/initrd.img | cpio -i --make-directories` extract initrd.img    
     `find . | cpio -H newc -o | gzip > /boot/initrd.img` compress initrd.img
+11. 应尽量安装grub2, 详见Arch wiki中关于grub的章节,进入grub shell后可能需要`root`的值如`(hd0,msdos1)`,这样才可以找到文件
 
 ## Helpful Links
 - [Linux from scratch](http://www.linuxfromscratch.org/blfs/view/svn/longindex.html#kernel-config-index)
