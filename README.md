@@ -19,8 +19,8 @@ This is a mini-linux customized from Cent OS 6.8, which is a work like [LFS](htt
 ## Bugs
 1. Can not type in sometimes.
 
-## ps
-1. 先使用`make defconfig`生成默认配置，再`make localmodconfig` 添加必须要添加的驱动，`make menuconfig`中删除不必要的网卡驱动可以大幅减小体积
+## Tips
+1. 先使用`make defconfig`生成默认配置，再`make localmodconfig`(尽量在本机Linux执行) 添加必须要添加的驱动，`make menuconfig`中删除不必要的网卡驱动可以大幅减小体积
 2. 关掉所有的`Kernel hacking`可以减小约0.7M的内核体积，Security option也可以全部关掉
 3. 尽量将设备驱动编译成为模块，查看选项的HELP，其中会有提示建议选择y还是n, 当然也要依情况而定，如果自己真的是对应于那个选项的情况
    肯定还是要打开的，我之前就有一个`AHCI`相关的选项，内核建议关掉，可是我的设备就是应该打开才能跑
