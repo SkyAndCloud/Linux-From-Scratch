@@ -1,4 +1,4 @@
-# SinOS
+# SineOS
 
 
 ## First of all
@@ -10,7 +10,7 @@ This is a mini-linux customized from Cent OS 6.8, which is a work like [LFS](htt
 - grub 2
 
 ## Features
-- mount windows **FAT/NTFS** file system
+- mount windows **FAT/NTFS** file system, Linux **EXT** file system
 - ethernet eth2 support with DHCP
 - ssh/sshd support
 - multi-user login support
@@ -30,8 +30,8 @@ This is a mini-linux customized from Cent OS 6.8, which is a work like [LFS](htt
    比如对于`udevd`的配置，建议在根目录下执行 `find . -name "*udevd*"`
 7. 在小系统中拷贝命令依赖的库文件时，注意有些库仍依赖于其他的库，如果命令不能运行参见Tips 5
 8. `LVM，NTFS-3g, Grub install` 请尽量参考下面的链接
-9. **最重要**的一点!!! 请务必使用`git`做好版本控制
-10. `gunzip < /boot/initrd.img | cpio -i --make-directories` extract initrd.img    
+9. **最重要**的一点!!! 请务必使用`git`或虚拟机镜像对配置和虚拟机做好版本控制，在虚拟机上测试initrd时使用虚拟机录制屏幕来查看启动过程中的log
+10. `gunzip < /boot/initrd.img | cpio -i --make-directories` extract initrd.img    
     `find . | cpio -H newc -o | gzip > /boot/initrd.img` compress initrd.img
 11. 应尽量安装grub2, 详见Arch wiki中关于grub的章节,进入grub shell后可能需要`root`的值如`(hd0,msdos1)`,这样才可以找到文件
 
